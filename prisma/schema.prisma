@@ -13,3 +13,12 @@ datasource db {
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 }
+model Stay {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  type      String
+  website   String?  
+  location  Json   
+  landmark  String
+  manager   String
+}
