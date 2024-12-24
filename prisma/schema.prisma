@@ -24,6 +24,6 @@ model Review{
 model Expense {
    id String @id @default(auto()) @map("_id") @db.ObjectId
    name String
-   rate Float
-   total Float 
+   rate String
+   total String 
 }
