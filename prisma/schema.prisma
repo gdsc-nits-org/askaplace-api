@@ -13,17 +13,26 @@ datasource db {
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 }
-
 model Review{
   id String @id @default(auto()) @map("_id") @db.ObjectId
   reviewer String
   review String
   rating Int
 }
-
 model Expense {
    id String @id @default(auto()) @map("_id") @db.ObjectId
    name String
    rate String
    total String 
+}
+
+model Stay {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  type      String
+  website   String?  
+  location  Json   
+  landmark  String
+  contact   String
+  manager   String
 }
