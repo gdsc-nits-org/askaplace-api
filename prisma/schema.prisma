@@ -19,6 +19,12 @@ model Review{
   review String
   rating Int
 }
+model Expense {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   name String
+   rate String
+   total String 
+}
 
 model Stay {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
