@@ -45,10 +45,10 @@ model Place{
   location              String
   longitiude            Float
   latitude              Float
-  mode of travel        String
+  mode_of_travel        String
   stay                  String
-  tourist location      String
-  blog section          String
+  tourist_ocation      String
+  blog                  String
   upvotes               Int
   downvotes             Int
   expense               Int
