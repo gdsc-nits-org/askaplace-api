@@ -38,16 +38,16 @@ model Stay {
 }
 
 model Place{
-  id                     Int         @id @default(auto()) @map("_id") @db.ObjectId
+  id                    String        @id @default(auto()) @map("_id") @db.ObjectId
   photos                String
   place                 String
-  description           String?
+  description           String
   location              String
   longitiude            Float
   latitude              Float
   mode_of_travel        String
-  stay                  String
-  tourist_ocation      String
+  stay                  Stay[]
+  tourist_ocation       Place[]
   blog                  String
   upvotes               Int
   downvotes             Int
