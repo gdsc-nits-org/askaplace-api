@@ -36,3 +36,21 @@ model Stay {
   contact   String
   manager   String
 }
+
+model Place{
+  id                     Int         @id @default(auto()) @map("_id") @db.ObjectId
+  photos                String
+  place                 String
+  description           String?
+  location              String
+  longitiude            Float
+  latitude              Float
+  mode of travel        String
+  stay                  String
+  tourist location      String
+  blog section          String
+  upvotes               Int
+  downvotes             Int
+  expense               Int
+
+}
