@@ -13,26 +13,49 @@ datasource db {
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 }
-model Review{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+model Review {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   reviewer String
-  review String
-  rating Int
+  review   String
+  rating   Int
 }
+
 model Expense {
-   id String @id @default(auto()) @map("_id") @db.ObjectId
-   name String
-   rate String
-   total String 
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  rate  String
+  total String
 }
 
 model Stay {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  type      String
-  website   String?  
-  location  Json   
-  landmark  String
-  contact   String
-  manager   String
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  type     String
+  website  String?
+  location Json
+  landmark String
+  contact  String
+  manager  String
+  Place    Place?  @relation(fields: [placeId], references: [id])
+  placeId  String? @db.ObjectId
+}
+
+model Place {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  photos            String
+  place             String
+  description       String
+  location          String
+  longitiude        Float
+  latitude          Float
+  mode_of_travel    String
+  stay              Stay[]
+  tourist_locations Place[] @relation("nearbyLocations")
+  blog              String
+  upvotes           Int
+  downvotes         Int
+  expense           Int
+  Place             Place?  @relation("nearbyLocations", fields: [placeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  placeId           String? @db.ObjectId
 }
