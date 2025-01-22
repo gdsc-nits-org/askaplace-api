@@ -19,6 +19,12 @@ app
 
 // Routers
 app.use(`${Constants.System.ROOT}/`, Routers.Health);
+app.use(`${Constants.System.ROOT}/user`, Routers.User);
+app.use(`${Constants.System.ROOT}/place`, Routers.Place);
+app.use(`${Constants.System.ROOT}/review`, Routers.Review);
+app.use(`${Constants.System.ROOT}/stay`, Routers.Stay);
+app.use(`${Constants.System.ROOT}/tag`, Routers.Tag);
+app.use(`${Constants.System.ROOT}/expense`, Routers.Expense);
 
 // Error Handlers
 app.use(Middlewares.Error.errorHandler);
