@@ -11,19 +11,21 @@ datasource db {
 }
 
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  email String
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  email      String
   firebaseId String
-  posts Place[]
-  tags Tag[]
+  posts      Place[]
+  tags       Tag[]
 }
 
-model Tag{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String 
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String @db.ObjectId
+model Tag {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  author   User    @relation(fields: [authorId], references: [id])
+  authorId String  @db.ObjectId
+  Place    Place?  @relation(fields: [placeId], references: [id])
+  placeId  String? @db.ObjectId
 }
 
 model Review {
@@ -70,6 +72,7 @@ model Place {
   expense           Int
   Place             Place?  @relation("nearbyLocations", fields: [placeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   placeId           String? @db.ObjectId
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String @db.ObjectId
+  author            User    @relation(fields: [authorId], references: [id])
+  authorId          String  @db.ObjectId
+  tags              Tag[]
 }
