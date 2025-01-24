@@ -48,10 +48,12 @@ model Review {
 }
 
 model Expense {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  rate  String
-  total String
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  rate    String
+  total   String
+  Place   Place?  @relation(fields: [placeId], references: [id])
+  placeId String? @db.ObjectId
 }
 
 model Stay {
@@ -68,7 +70,7 @@ model Stay {
 }
 
 model Place {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
   photos            String
   place             String
   description       String
@@ -77,15 +79,16 @@ model Place {
   latitude          Float
   mode_of_travel    String
   stay              Stay[]
-  tourist_locations Place[]  @relation("nearbyLocations")
+  tourist_locations Place[]   @relation("nearbyLocations")
   blog              String
   upvotes           Int
   downvotes         Int
   expense           Int
-  Place             Place?   @relation("nearbyLocations", fields: [placeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  placeId           String?  @db.ObjectId
-  author            User     @relation(fields: [authorId], references: [id])
-  authorId          String   @db.ObjectId
+  Place             Place?    @relation("nearbyLocations", fields: [placeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  placeId           String?   @db.ObjectId
+  author            User      @relation(fields: [authorId], references: [id])
+  authorId          String    @db.ObjectId
   tags              Tag[]
   reviews           Review[]
+  expenses          Expense[]
 }
