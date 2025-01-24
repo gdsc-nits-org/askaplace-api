@@ -10,9 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ROLE {
+  CLIENT
+  ADMIN
+}
+
 model User {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
   name       String
+  role       ROLE    @default(CLIENT)
   email      String
   firebaseId String
   posts      Place[]
@@ -29,10 +35,16 @@ model Tag {
 }
 
 model Review {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  reviewer String
-  review   String
-  rating   Int
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  timestamp DateTime @default(now())
+  reviewer  String
+  review    String
+  rating    Int
+  Place     Place?   @relation(fields: [placeId], references: [id])
+  placeId   String?  @db.ObjectId
+  replies   Review[] @relation("ReviewHierarchy")
+  Review    Review?  @relation("ReviewHierarchy", fields: [reviewId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  reviewId  String?  @db.ObjectId
 }
 
 model Expense {
@@ -56,7 +68,7 @@ model Stay {
 }
 
 model Place {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
   photos            String
   place             String
   description       String
@@ -65,14 +77,15 @@ model Place {
   latitude          Float
   mode_of_travel    String
   stay              Stay[]
-  tourist_locations Place[] @relation("nearbyLocations")
+  tourist_locations Place[]  @relation("nearbyLocations")
   blog              String
   upvotes           Int
   downvotes         Int
   expense           Int
-  Place             Place?  @relation("nearbyLocations", fields: [placeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  placeId           String? @db.ObjectId
-  author            User    @relation(fields: [authorId], references: [id])
-  authorId          String  @db.ObjectId
+  Place             Place?   @relation("nearbyLocations", fields: [placeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  placeId           String?  @db.ObjectId
+  author            User     @relation(fields: [authorId], references: [id])
+  authorId          String   @db.ObjectId
   tags              Tag[]
+  reviews           Review[]
 }
