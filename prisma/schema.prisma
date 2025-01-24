@@ -10,9 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ROLE {
+  CLIENT
+  ADMIN
+}
+
 model User {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
   name       String
+  role       ROLE    @default(CLIENT)
   email      String
   firebaseId String
   posts      Place[]
@@ -36,8 +42,8 @@ model Review {
   rating    Int
   Place     Place?   @relation(fields: [placeId], references: [id])
   placeId   String?  @db.ObjectId
-  replies    Review[] @relation("ReviewHierarchy")
-  Review    Review?  @relation("ReviewHierarchy",fields: [reviewId], references: [id],onDelete:NoAction,onUpdate: NoAction)
+  replies   Review[] @relation("ReviewHierarchy")
+  Review    Review?  @relation("ReviewHierarchy", fields: [reviewId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   reviewId  String?  @db.ObjectId
 }
 
