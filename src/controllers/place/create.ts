@@ -39,10 +39,10 @@ const Create: Interfaces.Controllers.Async = async (
         upvotes,
         downvotes,
         expense,
-        placeId,
-        authorId,
-        tags: {
-          connect: tags?.map((tagId: string) => ({ id: tagId })) || [],
+        author: {
+          connect: {
+            id: authorId,
+          },
         },
       },
     });

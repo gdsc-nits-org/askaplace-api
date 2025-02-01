@@ -13,14 +13,6 @@ const Read: Interfaces.Controllers.Async = async (
   try {
     const place = await prisma.place.findUnique({
       where: { id },
-      include: {
-        stay: true,
-        tourist_locations: true,
-        author: true,
-        tags: true,
-        reviews: true,
-        expenses: true,
-      },
     });
 
     if (!place) {
