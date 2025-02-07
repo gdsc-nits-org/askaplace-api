@@ -1,10 +1,10 @@
 {
   "name": "penpal-t",
   "config": {
-    "dist_dir": "dist",
-    "build_dir": "build",
-    "build_entry": "handler.js",
-    "dist_outfile": "main.js"
+    "distDir": "dist",
+    "buildDir": "build",
+    "buildEntry": "handler.js",
+    "distOutfile": "main.js"
   },
   "scripts": {
     "dev": "tsx watch server.ts",
