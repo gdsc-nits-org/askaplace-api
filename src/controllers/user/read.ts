@@ -18,6 +18,10 @@ const Self: Interfaces.Controllers.Async = async (req, res) => {
     }
     const user = await prisma.user.findMany({
       where: { firebaseId: firebaseId },
+      include: {
+        posts: true,
+        tags: true,
+      },
     });
 
     if (!user) {

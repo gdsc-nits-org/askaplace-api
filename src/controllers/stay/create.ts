@@ -27,7 +27,11 @@ const Create: Interfaces.Controllers.Async = async (
         landmark,
         contact,
         manager,
-        placeId,
+        Place: {
+          connect: {
+            id: placeId,
+          },
+        },
       },
     });
     res.status(201).json(newStay);
