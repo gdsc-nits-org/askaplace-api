@@ -1,9 +1,6 @@
 import * as Interfaces from "../../interfaces";
-import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
-
-const prisma = new PrismaClient();
-
+import { prisma } from "../../utils";
 const Create: Interfaces.Controllers.Async = async (
   req: Request,
   res: Response
@@ -39,9 +36,15 @@ const Create: Interfaces.Controllers.Async = async (
         upvotes,
         downvotes,
         expense,
+        tags,
         author: {
           connect: {
             id: authorId,
+          },
+        },
+        Place: {
+          connect: {
+            id: placeId,
           },
         },
       },
