@@ -38,7 +38,11 @@ const Create: Interfaces.Controllers.Async = async (req, res) => {
     const newTag = await prisma.tag.create({
       data: {
         name,
-        authorId,
+        author: {
+          connect: {
+            id: authorId,
+          },
+        },
       },
     });
 
@@ -52,8 +56,6 @@ const Create: Interfaces.Controllers.Async = async (req, res) => {
     return res.status(500).json({
       message: error instanceof Error ? error.message : "Internal server error",
     });
-  } finally {
-    await prisma.$disconnect();
   }
 };
 

@@ -2,15 +2,15 @@ import * as Interfaces from "../../interfaces";
 import { prisma } from "../../utils";
 const Read: Interfaces.Controllers.Async = async (req, res) => {
   try {
-    // To fetch all tags from the database
+    // Fetch all tags from the database
     const tags = await prisma.tag.findMany({
       include: {
-        author: true,
-        Place: true,
+        author: true, // Include the related author (User)
+        Place: true, // Include the related Place (if any)
       },
     });
 
-    // To return the tags in the response
+    // Return the tags in the response
     return res.status(200).json({
       message: "Tags fetched successfully",
       tags,
