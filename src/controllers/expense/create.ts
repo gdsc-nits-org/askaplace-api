@@ -16,7 +16,16 @@ const Create: Interfaces.Controllers.Async = async (
 
     // Create expense in the database
     const newExpense = await prisma.expense.create({
-      data: { name, rate, total, placeId },
+      data: {
+        name,
+        rate,
+        total,
+        Place: {
+          connect: {
+            id: placeId,
+          },
+        },
+      },
     });
 
     return res.status(201).json({
