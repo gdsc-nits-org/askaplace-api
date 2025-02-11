@@ -1,7 +1,5 @@
 import * as Interfaces from "../../interfaces";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../utils";
 const Read: Interfaces.Controllers.Async = async (req, res) => {
   //write your get request logic here
   try {

@@ -1,8 +1,5 @@
 import * as Interfaces from "../../interfaces";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
-
+import { prisma } from "../../utils";
 const Create: Interfaces.Controllers.Async = async (req, res) => {
   try {
     const { name, role, email, firebaseId } = req.body;
