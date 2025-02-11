@@ -14,8 +14,16 @@ const Create: Interfaces.Controllers.Async = async (
         reviewer,
         review,
         rating,
-        placeId,
-        reviewId, //link to parent review if it's a reply
+        Place: {
+          connect: {
+            id: placeId,
+          },
+        },
+        Review: {
+          connect: {
+            id: reviewId,
+          },
+        }, //link to parent review if it's a reply
       },
     });
     res.status(201).json(newReview);
