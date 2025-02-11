@@ -1,8 +1,7 @@
 import * as Interfaces from "../../interfaces";
-import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
+import { prisma } from "../../utils";
 
-const prisma = new PrismaClient();
 const Delete: Interfaces.Controllers.Async = async (
   req: Request,
   res: Response
