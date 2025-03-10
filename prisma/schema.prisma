@@ -23,6 +23,7 @@ model User {
   firebaseId String
   posts      Place[]
   tags       Tag[]
+  picture    String
 }
 
 model Tag {
