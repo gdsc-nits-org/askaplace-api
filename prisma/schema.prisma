@@ -23,6 +23,7 @@ model User {
   firebaseId String
   posts      Place[]
   tags       Tag[]
+  picture    String
 }
 
 model Tag {
@@ -71,7 +72,7 @@ model Stay {
 
 model Place {
   id                String    @id @default(auto()) @map("_id") @db.ObjectId
-  photos            String
+  photos            String[]
   place             String
   description       String
   location          String
@@ -83,7 +84,7 @@ model Place {
   blog              String
   upvotes           Int
   downvotes         Int
-  expense           Int
+
   Place             Place?    @relation("nearbyLocations", fields: [placeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   placeId           String?   @db.ObjectId
   author            User      @relation(fields: [authorId], references: [id])

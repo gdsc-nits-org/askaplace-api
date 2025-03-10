@@ -36,6 +36,7 @@ const ReadAll: Interfaces.Controllers.Async = async (
         tags: true,
         reviews: true,
         expenses: true,
+        place:true,
       },
     });
 
