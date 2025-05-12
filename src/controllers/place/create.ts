@@ -16,7 +16,7 @@ const Create: Interfaces.Controllers.Async = async (
     blog,
     upvotes,
     downvotes,
-    expense,
+    expenses,
     placeId,
     authorId,
     tags,
@@ -35,7 +35,7 @@ const Create: Interfaces.Controllers.Async = async (
         blog,
         upvotes,
         downvotes,
-        expense,
+        expenses,
         tags,
         author: {
           connect: {
@@ -49,9 +49,9 @@ const Create: Interfaces.Controllers.Async = async (
         },
       },
     });
-    res.status(201).json(newPlace);
+    return res.status(201).json(newPlace);
   } catch (error) {
-    res.status(500).json({ error: "Failed to create place!" });
+    return res.status(500).json({ error: "Failed to create place!" });
   }
 };
 
