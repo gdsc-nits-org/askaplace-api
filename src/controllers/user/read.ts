@@ -1,12 +1,12 @@
 import * as Interfaces from "../../interfaces";
 import { prisma } from "../../utils";
-const Read: Interfaces.Controllers.Async = async (req, res) => {
+const Read: Interfaces.Controllers.Async = async (_req, res) => {
   //write your get request logic here
   try {
     const users = await prisma.user.findMany();
-    res.json(users);
+    return res.json(users);
   } catch (error) {
-    res.status(500).json({ error: "Something went wrong" });
+    return res.status(500).json({ error: "Something went wrong" });
   }
 };
 const Self: Interfaces.Controllers.Async = async (req, res) => {
@@ -27,9 +27,9 @@ const Self: Interfaces.Controllers.Async = async (req, res) => {
     if (!user) {
       return res.json(404).json({ error: "User not found" });
     }
-    res.json(user);
+    return res.json(user);
   } catch (error) {
-    res.status(500).json({ error: "Something went wrong!" });
+    return res.status(500).json({ error: "Something went wrong!" });
   }
 };
 

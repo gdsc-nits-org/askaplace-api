@@ -1,6 +1,6 @@
 import * as Interfaces from "../../interfaces";
 import { prisma } from "../../utils";
-const Read: Interfaces.Controllers.Async = async (req, res) => {
+const Read: Interfaces.Controllers.Async = async (_req, res) => {
   try {
     // Fetch all tags from the database
     const tags = await prisma.tag.findMany({

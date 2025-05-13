@@ -2,7 +2,7 @@ import * as Interfaces from "../../interfaces";
 import { prisma } from "../../utils";
 const Create: Interfaces.Controllers.Async = async (req, res) => {
   try {
-    const { name, role, email, firebaseId } = req.body;
+    const { name, role, email, firebaseId, picture } = req.body;
 
     // Create the user in the database
     const newUser = await prisma.user.create({
@@ -11,6 +11,7 @@ const Create: Interfaces.Controllers.Async = async (req, res) => {
         role,
         email,
         firebaseId,
+        picture,
       },
     });
 
