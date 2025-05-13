@@ -23,12 +23,12 @@ const Update: Interfaces.Controllers.Async = async (
       return res.status(404).json({ message: "Expense not found" });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Expense updated successfully",
       expense: updatedExpense,
     });
   } catch (error) {
-    res.status(500).json({ message: "Error updating expense", error });
+    return res.status(500).json({ message: "Error updating expense", error });
   }
 };
 export default Update;

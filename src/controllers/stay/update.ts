@@ -35,9 +35,9 @@ const Update: Interfaces.Controllers.Async = async (req, res) => {
         },
       },
     });
-    res.status(200).json(updatedStay);
+    return res.status(200).json(updatedStay);
   } catch (error) {
-    res.status(500).json({ message: "Error updating stay", error });
+    return res.status(500).json({ message: "Error updating stay", error });
   }
 };
 export default Update;

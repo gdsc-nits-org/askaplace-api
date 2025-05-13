@@ -17,9 +17,9 @@ const Read: Interfaces.Controllers.Async = async (
       where: { placeId },
     });
 
-    res.status(200).json({ expenses });
+    return res.status(200).json({ expenses });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching expenses", error });
+    return res.status(500).json({ message: "Error fetching expenses", error });
   }
 };
 export default Read;
