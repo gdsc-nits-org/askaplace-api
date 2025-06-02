@@ -35,22 +35,34 @@ const Create: Interfaces.Controllers.Async = async (
         blog,
         upvotes,
         downvotes,
-        expenses,
-        tags,
         author: {
           connect: {
             id: authorId,
           },
         },
-        Place: {
-          connect: {
-            id: placeId,
-          },
-        },
+        Place: placeId
+          ? {
+              connect: {
+                id: placeId,
+              },
+            }
+          : undefined,
+        expenses: expenses
+          ? {
+              create: expenses,
+            }
+          : undefined,
+        tags: Array.isArray(tags)
+          ? {
+              connect: tags.map((tagId: string) => ({ id: tagId })),
+            }
+          : undefined,
       },
     });
+
     return res.status(201).json(newPlace);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: "Failed to create place!" });
   }
 };
